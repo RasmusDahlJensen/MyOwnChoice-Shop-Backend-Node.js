@@ -18,7 +18,65 @@ class productController {
 	};
 
 	create = async (req, res) => {
-		console.log(req.body);
+		const {
+			name,
+			brand,
+			category_id,
+			price,
+			image,
+			description,
+			rating,
+			storage,
+		} = req.body;
+
+		if (
+			name &&
+			brand &&
+			category_id &&
+			price &&
+			image &&
+			description &&
+			rating &&
+			storage
+		) {
+			const model = await productModel.create(req.body);
+			res.json({ newId: model.id });
+		} else {
+			res.sendStatus(418);
+		}
+	};
+
+	update = async (req, res) => {
+		const { id } = req.params || 0;
+		const {
+			name,
+			brand,
+			category_id,
+			price,
+			image,
+			description,
+			rating,
+			storage,
+		} = req.body;
+
+		if (
+			id &&
+			name &&
+			brand &&
+			category_id &&
+			price &&
+			image &&
+			description &&
+			rating &&
+			storage
+		) {
+			const model = await productModel.update(req.body, {
+				where: { id: id },
+			});
+			res.json({ msg: "Product Updated" });
+		} else {
+			res.sendStatus(418);
+		}
 	};
 }
 
