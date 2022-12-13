@@ -1,6 +1,7 @@
 //Dependencies
 import { sequelize } from "../config/dbConfig.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
+import bcrypt from "bcrypt";
 
 class userModel extends Model {}
 
@@ -39,8 +40,21 @@ userModel.init(
 		sequelize,
 		modelName: "user",
 		freezeTableName: true,
-
+		hooks: {
+			beforeCreate: async (user, options) => {
+				user.password = await createHash(user.password);
+			},
+			beforeUpdate: async (user, options) => {
+				user.password = await createHash(user.password);
+			},
+		},
 	}
 );
+
+const createHash = async (string) => {
+	const salt = await bcrypt.genSalt(10);
+	const hashedString = await bcrypt.hash(string, salt);
+	return hashedString;
+};
 
 export default userModel;

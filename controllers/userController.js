@@ -43,6 +43,7 @@ class userController {
 		if (firstname && lastname && email && password) {
 			const model = await userModel.update(req.body, {
 				where: { id: id },
+				individualHooks: true,
 			});
 			res.json({ msg: "User Updated" });
 		} else {
