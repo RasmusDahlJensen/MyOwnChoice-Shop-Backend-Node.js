@@ -18,7 +18,28 @@ class categoryController {
 	};
 
 	create = async (req, res) => {
-		console.log(req.body);
+		const { name } = req.body;
+
+		if (name) {
+			const model = await categoryModel.create(req.body);
+			res.json({ newId: model.id });
+		} else {
+			res.sendStatus(418);
+		}
+	};
+
+	update = async (req, res) => {
+		const { id } = req.params || 0;
+		const { name } = req.body;
+
+		if (id && name) {
+			const model = await categoryModel.update(req.body, {
+				where: { id: id },
+			});
+			res.json({ msg: "Category Updated" });
+		} else {
+			res.sendStatus(418);
+		}
 	};
 }
 

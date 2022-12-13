@@ -25,6 +25,30 @@ class userController {
 		});
 		res.json(result);
 	};
+
+	create = async (req, res) => {
+		const { firstname, lastname, email, password } = req.body;
+
+		if (firstname && lastname && email && password) {
+			const model = await userModel.create(req.body);
+			res.json({ newId: model.id });
+		} else {
+			res.sendStatus(418);
+		}
+	};
+	update = async (req, res) => {
+		const { id } = req.params || 0;
+		const { firstname, lastname, email, password } = req.body;
+
+		if (firstname && lastname && email && password) {
+			const model = await userModel.update(req.body, {
+				where: { id: id },
+			});
+			res.json({ msg: "User Updated" });
+		} else {
+			res.sendStatus(418);
+		}
+	};
 }
 
 export default userController;
