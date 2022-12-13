@@ -18,9 +18,9 @@ class categoryController {
 	};
 
 	create = async (req, res) => {
-		const { name } = req.body;
+		const { name, category_id } = req.body;
 
-		if (name) {
+		if (name && category_id) {
 			const model = await categoryModel.create(req.body);
 			res.json({ newId: model.id });
 		} else {
@@ -30,9 +30,9 @@ class categoryController {
 
 	update = async (req, res) => {
 		const { id } = req.params || 0;
-		const { name } = req.body;
+		const { name, category_id } = req.body;
 
-		if (id && name) {
+		if (id && name && category_id) {
 			const model = await categoryModel.update(req.body, {
 				where: { id: id },
 			});
