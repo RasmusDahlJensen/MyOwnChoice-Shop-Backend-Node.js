@@ -9,7 +9,7 @@ categoryRouter.get("/category/list", (req, res) => {
 categoryRouter.get("/category/:id([0-9]*)", (req, res) => {
 	controller.details(req, res);
 });
-categoryRouter.post("/category/create", (req, res) => {
+categoryRouter.post("/category", (req, res) => {
 	controller.create(req, res);
 });
 categoryRouter.put("/category/:id([0-9]*)", (req, res) => {
