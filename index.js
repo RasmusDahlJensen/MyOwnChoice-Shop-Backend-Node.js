@@ -14,6 +14,7 @@ const port = process.env.PORT || 3000;
 
 // App object
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 //Router bundles
 app.use(initRouter);
