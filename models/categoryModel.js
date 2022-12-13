@@ -1,7 +1,10 @@
+//Dependencies
 import { sequelize } from "../config/dbConfig.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 class categoryModel extends Model {}
+
+//Table data
 
 categoryModel.init(
 	{
@@ -19,5 +22,8 @@ categoryModel.init(
 	{
 		sequelize,
 		modelName: "category",
+		freezeTableName: true,
 	}
 );
+
+export default categoryModel;

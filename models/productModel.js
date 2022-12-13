@@ -1,8 +1,10 @@
+//Dependencies
 import { sequelize } from "../config/dbConfig.js";
 import { Sequelize, DataTypes, Model } from "sequelize";
 
 class productModel extends Model {}
 
+//Table data
 productModel.init(
 	{
 		id: {
@@ -24,7 +26,7 @@ productModel.init(
 			allowNull: false,
 		},
 		price: {
-			type: DataTypes.INTEGER,
+			type: DataTypes.BIGINT,
 			allowNull: false,
 		},
 		image: {
@@ -47,6 +49,7 @@ productModel.init(
 	{
 		sequelize,
 		modelName: "product",
+		freezeTableName: true,
 	}
 );
 
