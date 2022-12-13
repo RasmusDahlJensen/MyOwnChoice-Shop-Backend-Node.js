@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { router as initRouter } from "./routes/initRouter.js";
+import productRouter from "./routes/productRoute.js";
 
 // dotenv modul
 dotenv.config();
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(initRouter);
+app.use(productRouter);
 
 //Run server
 app.listen(port, () => {
