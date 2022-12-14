@@ -9,17 +9,13 @@ class categoryModel extends Model {}
 categoryModel.init(
 	{
 		id: {
-			type: DataTypes.BIGINT,
+			type: DataTypes.INTEGER,
 			autoIncrement: true,
 			allowNull: false,
 			primaryKey: true,
 		},
 		name: {
 			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		category_id: {
-			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 	},

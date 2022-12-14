@@ -1,10 +1,14 @@
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
+
+categoryModel.hasMany(productModel);
+productModel.belongsTo(categoryModel);
 
 class productController {
 	//Methods
 	list = async (req, res) => {
 		const result = await productModel.findAll({
-			attributes: ["id", "name", "brand", "category_id"],
+			attributes: ["id", "name", "brand", "categoryId"],
 		});
 		res.json(result);
 	};
@@ -13,6 +17,10 @@ class productController {
 		const { id } = req.params || 0;
 		const result = await productModel.findOne({
 			where: { id: id },
+			include: {
+				model: categoryModel,
+				attributes: ["id", "name"],
+			},
 		});
 		res.json(result);
 	};
@@ -21,7 +29,7 @@ class productController {
 		const {
 			name,
 			brand,
-			category_id,
+			categoryId,
 			price,
 			image,
 			description,
@@ -32,7 +40,7 @@ class productController {
 		if (
 			name &&
 			brand &&
-			category_id &&
+			categoryId &&
 			price &&
 			image &&
 			description &&
@@ -51,7 +59,7 @@ class productController {
 		const {
 			name,
 			brand,
-			category_id,
+			categoryId,
 			price,
 			image,
 			description,
@@ -63,7 +71,7 @@ class productController {
 			id &&
 			name &&
 			brand &&
-			category_id &&
+			categoryId &&
 			price &&
 			image &&
 			description &&

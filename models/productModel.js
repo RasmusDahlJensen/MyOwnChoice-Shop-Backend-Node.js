@@ -21,10 +21,6 @@ productModel.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		category_id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-		},
 		price: {
 			type: DataTypes.BIGINT,
 			allowNull: false,
