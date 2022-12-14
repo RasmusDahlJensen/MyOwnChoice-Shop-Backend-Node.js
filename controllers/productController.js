@@ -8,7 +8,20 @@ class productController {
 	//Methods
 	list = async (req, res) => {
 		const result = await productModel.findAll({
-			attributes: ["id", "name", "brand", "categoryId"],
+			attributes: [
+				"id",
+				"name",
+				"brand",
+				"categoryId",
+				"image",
+				"description",
+				"rating",
+				"storage",
+			],
+			include: {
+				model: categoryModel,
+				attributes: ["id", "name"],
+			},
 		});
 		res.json(result);
 	};
