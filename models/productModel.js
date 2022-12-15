@@ -41,6 +41,10 @@ productModel.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
+		reviewAmount: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
 	},
 	{
 		sequelize,

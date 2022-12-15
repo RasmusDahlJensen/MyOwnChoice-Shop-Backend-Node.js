@@ -17,6 +17,8 @@ class productController {
 				"description",
 				"rating",
 				"storage",
+				"reviewAmount",
+				"price",
 			],
 			include: {
 				model: categoryModel,
